@@ -552,6 +552,7 @@ if [[ $deconfig == new ]]; then
     sed -i "s/DWSALT/${DWSALT}/g" $HOME/.config/deluge2/web.conf
     sed -i "s/DWP/${DWP}/g" $HOME/.config/deluge2/web.conf
     sed -i.bak "/pwd_sha1/d" ~/.config/deluge2/web.conf
+    sed -i.bak "/pwd_salt/d" ~/.config/deluge2/web.conf
     portGenerator2 && portCheck2 && sed -i 's|"port":.*,|"port": '$portGen2',|g' $HOME/.config/deluge2/web.conf
     echo "$(whoami):${DEPASS}:10" > $HOME/.config/deluge2/auth
 fi
