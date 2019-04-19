@@ -478,7 +478,10 @@ function _install_de() {
 echo ; cd
 
 # 关掉可能在运行的第二个 deluged
-for depid in ` ps aux | grep $(whoami) | grep -Ev "grep|aux|root" | grep de2 | awk '{print $2}' ` ; do kill -9 $depid ; done
+#for depid in ` ps aux | grep $(whoami) | grep -Ev "grep|aux|root" | grep de2 | awk '{print $2}' ` ; do kill -9 $depid ; done
+for depid in ` ps aux | grep $(whoami) | grep -Ev "grep|aux" | grep de2 | awk '{print $2}' ` ; do kill -9 $depid ; done
+for depid in ` ps aux | grep $(whoami) | grep -Ev "grep|aux" | grep dew2 | awk '{print $2}' ` ; do kill -9 $depid ; done
+for depid in ` ps aux | grep $(whoami) | grep -Ev "grep|aux" | grep deluge-web | awk '{print $2}' ` ; do kill -9 $depid ; done
 
 while [[ $DEVERSION = "" ]]; do
     echo -ne "${bold}${yellow}请输入你要安装的第二个 Deluge 的版本 : ${normal}" ; read -e DEVERSION
