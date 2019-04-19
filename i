@@ -576,9 +576,9 @@ if [[ $HOME = /root ]]; then
     ./bin/dew2 -p $WebUIPort -c ./.config/deluge2 -f >/dev/null 2>&1
 else
     $HOME/bin/de2 -c $HOME/.config/deluge2 >/dev/null 2>&1
-    echo "$HOME/bin/de2 -c $HOME/.config/deluge2"
+    echo ".$HOME/bin/de2 -c .$HOME/.config/deluge2"
     $HOME/bin/dew2 -p $WebUIPort -c $HOME/.config/deluge2 -f >/dev/null 2>&1
-    echo "$HOME/bin/dew2 -p $WebUIPort -c $HOME/.config/deluge2 -f"
+    echo ".$HOME/bin/dew2 -p $WebUIPort -c .$HOME/.config/deluge2 -f"
 fi
 
 # 检查 用户名、密码、端口
