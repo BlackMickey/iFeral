@@ -550,6 +550,7 @@ if [[ $deconfig == new ]]; then
 fi
 
 if [[ $DEVERSION = "Mickey" ]]; then
+    rm -f $HOME/.local/lib/python2.7/site-packages/deluge-1.3.14-py2.7.egg/
     mv -f $HOME/.local/lib/python2.7/site-packages/deluge-1.3.15-py2.7.egg/ $HOME/.local/lib/python2.7/site-packages/deluge-1.3.14-py2.7.egg/
     sed -i 's/1.3.15/1.3.14/g' $HOME/bin/de2
     sed -i 's/1.3.15/1.3.14/g' $HOME/bin/dew2
