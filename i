@@ -564,8 +564,14 @@ case $InputWebUIPort in
     *  ) WebUIPort=$InputWebUIPort ;;
 esac
 
-$HOME/bin/de2 -c $HOME/.config/deluge2 >/dev/null 2>&1
-$HOME/bin/dew2 -p $WebUIPort -c $HOME/.config/deluge2 -f >/dev/null 2>&1
+if [[ $HOME = /root ]]; then
+    echo $HOME
+    ./bin/de2 -c .config/deluge2 >/dev/null 2>&1
+    ./bin/dew2 -p $WebUIPort -c .config/deluge2 -f >/dev/null 2>&1
+else
+    $HOME/bin/de2 -c $HOME/.config/deluge2 >/dev/null 2>&1
+    $HOME/bin/dew2 -p $WebUIPort -c $HOME/.config/deluge2 -f >/dev/null 2>&1
+fi
 
 # 检查 用户名、密码、端口
 DE2PORT=` grep daemon_port $HOME/.config/deluge2/core.conf | grep -oP "\d+" `
