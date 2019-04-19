@@ -486,7 +486,8 @@ for depid in ` ps aux | grep $(whoami) | grep -Ev "grep|aux" | grep deluge-web |
 while [[ $DEVERSION = "" ]]; do
     echo -ne "${bold}${yellow}请输入你要安装的第二个 Deluge 的版本 : ${normal}" ; read -e DEVERSION
     if [[ $DEVERSION = "Mickey" ]]; then
-        apt install xz-utils
+        apt update
+        apt install xz-utils python python-twisted python-openssl python-setuptools intltool python-xdg python-chardet geoip-database python-notify python-pygame python-glade2 librsvg2-common xdg-utils python-mako
         wget $quietflag -O $HOME/deluge-1.3-stable-20190414.tar.xz https://github.com/BlackMickey/Seedbox-files/raw/master/deluge/deluge-1.3-stable-20190414.tar.xz
     else
         wget $quietflag -O $HOME/deluge-$DEVERSION.tar.gz http://download.deluge-torrent.org/source/deluge-$DEVERSION.tar.gz || { echo -e "${error} 下载 Deluge 源码失败，可能是这个版本不可用！" ; unset DEVERSION ; }
