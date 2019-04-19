@@ -562,7 +562,7 @@ case $InputWebUIPort in
     "" ) WebUIPort=39999 ;;
     *  ) WebUIPort=$InputWebUIPort ;;
 esac
-echo $WebUIPort
+
 $HOME/bin/de2 -c $HOME/.config/deluge2 >/dev/null 2>&1
 $HOME/bin/dew2 -p $WebUIPort -c $HOME/.config/deluge2 -f >/dev/null 2>&1
 
@@ -574,7 +574,7 @@ DE2AUTHPASS=` grep -v localclient $HOME/.config/deluge2/auth | head -n1 | awk -F
 if [[ ` ps aux | grep $(whoami) | grep -Ev "grep|aux|root" | grep de2 ` ]]; then
     echo -e "\n${bold}${green}第二个 Deluge 已安装完成！${jiacu}\n"
     if [[ $DEVERSION = "Mickey" ]]; then
-        echo -e "WebUI  网址  ${cyan}http://$(hostname -f):$(WebUIPort)${jiacu}"
+        echo -e "WebUI  网址  ${cyan}http://$(hostname -f):$WebUIPort${jiacu}"
     else
         echo -e "WebUI  网址  ${cyan}http://$(hostname -f)/$(whoami)/deluge${jiacu}"
     fi
