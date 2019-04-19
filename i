@@ -500,7 +500,7 @@ sed -i "s/SSL.SSLv3_METHOD/SSL.SSLv23_METHOD/g" deluge/core/rpcserver.py
 sed -i "/        ctx = SSL.Context(SSL.SSLv23_METHOD)/a\        ctx.set_options(SSL.OP_NO_SSLv2 & SSL.OP_NO_SSLv3)" deluge/core/rpcserver.py
 python setup.py install --user >/dev/null 2>&1
 if [[ $DEVERSION = "Mickey" ]]; then
-    cd && rm -rf $HOME/deluge-1.3-stable-20190414 $HOME/deluge-1.3-stable-20190414.tar.xz
+    # cd && rm -rf $HOME/deluge-1.3-stable-20190414 $HOME/deluge-1.3-stable-20190414.tar.xz
 else
     cd && rm -rf $HOME/deluge-"${DEVERSION}" $HOME/deluge-"${DEVERSION}".tar.gz
 fi
@@ -547,10 +547,14 @@ if [[ $deconfig == new ]]; then
     echo "$(whoami):${DEPASS}:10" > $HOME/.config/deluge2/auth
 fi
 
+if [[ $DEVERSION = "Mickey" ]]; then
+    sed '6 export PATH=$PATH:$(HOME)/deluge-1.3-stable-20190414' -i $HOME/bin/de2
+    sed '6 export PATH=$PATH:$(HOME)/deluge-1.3-stable-20190414' -i $HOME/bin/dew2
+fi
+
 # 运行
 $HOME/bin/de2 -c $HOME/.config/deluge2 >/dev/null 2>&1
-
-# $HOME/bin/dew2 -c $HOME/.config/deluge2 -f >/dev/null 2>&1
+$HOME/bin/dew2 -c $HOME/.config/deluge2 -f >/dev/null 2>&1
 
 # 检查 用户名、密码、端口
 DE2PORT=` grep daemon_port $HOME/.config/deluge2/core.conf | grep -oP "\d+" `
