@@ -1,3 +1,5 @@
+個人測試用，不建議使用
+
 # iFeral
 > For FeralHosting Seedbox  
 > Some usages also works on SeedHost  
@@ -7,7 +9,7 @@
 
 ## Usage
 ``` 
-bash -c "$(wget -qO- https://github.com/Aniverse/iFeral/raw/master/i)"
+bash -c "$(wget -qO- https://github.com/BlackMickey/iFeral/raw/master/i)"
 ``` 
 
 ## Features
