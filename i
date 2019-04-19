@@ -500,16 +500,18 @@ sed -i "s/SSL.SSLv3_METHOD/SSL.SSLv23_METHOD/g" deluge/core/rpcserver.py
 sed -i "/        ctx = SSL.Context(SSL.SSLv23_METHOD)/a\        ctx.set_options(SSL.OP_NO_SSLv2 & SSL.OP_NO_SSLv3)" deluge/core/rpcserver.py
 python setup.py install --user >/dev/null 2>&1
 if [[ $DEVERSION = "Mickey" ]]; then
-    cd && rm -rf $HOME/deluge-1.3-stable-20190414.tar.xz
+    mv $HOME/deluge-1.3-stable-20190414/deluge/plugins $HOME/.local/lib/python2.7/site-packages/deluge-1.3.16-py2.7.egg/deluge/plugins
+    cd && rm -rf $HOME/deluge-1.3-stable-20190414 $HOME/deluge-1.3-stable-20190414.tar.xz
 else
     cd && rm -rf $HOME/deluge-"${DEVERSION}" $HOME/deluge-"${DEVERSION}".tar.gz
 fi
 
 
-rm -f $HOME/bin/{de2,dew2} >/dev/null 2>&1
+rm -f $HOME/bin/{de2,dew2,dc2} >/dev/null 2>&1
 mv -f $HOME/.local/bin/deluged $HOME/bin/de2 >/dev/null 2>&1
 mv -f $HOME/.local/bin/deluge-web $HOME/bin/dew2 >/dev/null 2>&1
-chmod 700 $HOME/bin/{de2,dew2} >/dev/null 2>&1
+mv -f $HOME/.local/bin/deluge-console $HOME/bin/dc2 >/dev/null 2>&1
+chmod 700 $HOME/bin/{de2,dew2,dc2} >/dev/null 2>&1
 [[ ! -e $HOME/bin/de2 ]] && { echo -e "${error} 第二个 Deluged 安装失败！\n不要问我为什么和怎么办，你自己看着办吧！${normal}" ; exit 1 ; }
 
 # 询问是否覆盖原配置信息
@@ -551,6 +553,7 @@ if [[ $DEVERSION = "Mickey" ]]; then
     mv $HOME/.local/lib/python2.7/site-packages/deluge-1.3.15-py2.7.egg $HOME/.local/lib/python2.7/site-packages/deluge-1.3.14-py2.7.egg
     sed -i 's/1.3.15/1.3.14/g' $HOME/bin/de2
     sed -i 's/1.3.15/1.3.14/g' $HOME/bin/dew2
+    sed -i 's/1.3.15/1.3.14/g' $HOME/bin/dc2
 fi
 
 # 运行
