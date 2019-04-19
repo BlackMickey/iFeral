@@ -558,7 +558,7 @@ fi
 
 # 运行
 $HOME/bin/de2 -c $HOME/.config/deluge2 >/dev/null 2>&1
-$HOME/bin/dew2 -c $HOME/.config/deluge2 -f -p 39999 >/dev/null 2>&1
+$HOME/bin/dew2 -p 39999 -c $HOME/.config/deluge2 -f >/dev/null 2>&1
 
 # 检查 用户名、密码、端口
 DE2PORT=` grep daemon_port $HOME/.config/deluge2/core.conf | grep -oP "\d+" `
@@ -568,7 +568,7 @@ DE2AUTHPASS=` grep -v localclient $HOME/.config/deluge2/auth | head -n1 | awk -F
 if [[ ` ps aux | grep $(whoami) | grep -Ev "grep|aux|root" | grep de2 ` ]]; then
     echo -e "\n${bold}${green}第二个 Deluge 已安装完成！${jiacu}\n"
     if [[ $DEVERSION = "Mickey" ]]; then
-        echo -e "WebUI  网址  ${cyan}http://$(hostname -f):39999"
+        echo -e "WebUI  网址  ${cyan}http://$(hostname -f):39999${jiacu}"
     else
         echo -e "WebUI  网址  ${cyan}http://$(hostname -f)/$(whoami)/deluge${jiacu}"
     fi
