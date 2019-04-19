@@ -500,7 +500,7 @@ sed -i "s/SSL.SSLv3_METHOD/SSL.SSLv23_METHOD/g" deluge/core/rpcserver.py
 sed -i "/        ctx = SSL.Context(SSL.SSLv23_METHOD)/a\        ctx.set_options(SSL.OP_NO_SSLv2 & SSL.OP_NO_SSLv3)" deluge/core/rpcserver.py
 python setup.py install --user >/dev/null 2>&1
 if [[ $DEVERSION = "Mickey" ]]; then
-    mv $HOME/deluge-1.3-stable-20190414/deluge/plugins $HOME/.local/lib/python2.7/site-packages/deluge-1.3.15-py2.7.egg/deluge/plugins
+    mv -f $HOME/deluge-1.3-stable-20190414/deluge/plugins $HOME/.local/lib/python2.7/site-packages/deluge-1.3.15-py2.7.egg/deluge/plugins
     cd && rm -rf $HOME/deluge-1.3-stable-20190414 $HOME/deluge-1.3-stable-20190414.tar.xz
 else
     cd && rm -rf $HOME/deluge-"${DEVERSION}" $HOME/deluge-"${DEVERSION}".tar.gz
@@ -550,7 +550,7 @@ if [[ $deconfig == new ]]; then
 fi
 
 if [[ $DEVERSION = "Mickey" ]]; then
-    mv $HOME/.local/lib/python2.7/site-packages/deluge-1.3.15-py2.7.egg $HOME/.local/lib/python2.7/site-packages/deluge-1.3.14-py2.7.egg
+    mv -f $HOME/.local/lib/python2.7/site-packages/deluge-1.3.15-py2.7.egg $HOME/.local/lib/python2.7/site-packages/deluge-1.3.14-py2.7.egg
     sed -i 's/1.3.15/1.3.14/g' $HOME/bin/de2
     sed -i 's/1.3.15/1.3.14/g' $HOME/bin/dew2
     sed -i 's/1.3.15/1.3.14/g' $HOME/bin/dc2
