@@ -548,8 +548,9 @@ if [[ $deconfig == new ]]; then
 fi
 
 if [[ $DEVERSION = "Mickey" ]]; then
-    sed 'N;6aexport PATH=$PATH:$(HOME)/deluge-1.3-stable-20190414' -i $HOME/bin/de2
-    sed 'N;6aexport PATH=$PATH:$(HOME)/deluge-1.3-stable-20190414' -i $HOME/bin/dew2
+    mv $HOME/.local/lib/python2.7/site-packages/deluge-1.3.15-py2.7.egg $HOME/.local/lib/python2.7/site-packages/deluge-1.3.16-py2.7.egg
+    sed -i 's/1.3.15/1.3.16/g' $HOME/bin/de2
+    sed -i 's/1.3.15/1.3.16/g' $HOME/bin/dew2
 fi
 
 # 运行
