@@ -542,10 +542,12 @@ if [[ $deconfig == new ]]; then
 
   # 直接 sed 路径无法替换，需要用这种方式来实现，比较蛋疼
   # 2019.01.26 其实应该是可以的，以后改下
+  # 刪除deluge-web預設密碼
     cat $HOME/.config/deluge2/core.conf | sed -e "s/USERPATH/${USERPATHSED}/g" > $HOME/.config/deluge2/core2.conf
     mv $HOME/.config/deluge2/core2.conf $HOME/.config/deluge2/core.conf
     sed -i "s/DWSALT/${DWSALT}/g" $HOME/.config/deluge2/web.conf
     sed -i "s/DWP/${DWP}/g" $HOME/.config/deluge2/web.conf
+    sed -i.bak "/pwd_sha1/d" ~/.config/deluge2/web.conf
     portGenerator2 && portCheck2 && sed -i 's|"port":.*,|"port": '$portGen2',|g' $HOME/.config/deluge2/web.conf
     echo "$(whoami):${DEPASS}:10" > $HOME/.config/deluge2/auth
 fi
@@ -586,12 +588,13 @@ if [[ ` ps aux | grep $(whoami) | grep -Ev "grep|aux" | grep de2 ` ]]; then
     else
         echo -e "WebUI  网址  ${cyan}http://$(hostname -f)/$(whoami)/deluge${jiacu}"
     fi
-    echo -e "WebUI  密码  ${cyan}和第一个 Deluge WebUI 的密码一样${jiacu}"
+    echo -e "WebUI  密码  ${cyan}deluge${jiacu}"
     echo -e "WebUI  主机  ${cyan}127.0.0.1 或 10.0.0.1${jiacu}"
     echo -e "GtkUI  主机  ${cyan}$(hostname -f)${jiacu}"
     echo -e "daemon 账号  ${cyan}$DE2AUTHNAME${jiacu}"
     echo -e "daemon 密码  ${cyan}$DE2AUTHPASS${jiacu}"
     echo -e "daemon 端口  ${cyan}$DE2PORT${normal}"
+    echo -e "為了帳戶安全，請立刻修改 Deluge-web 密碼"
 else
     echo -e "${error} 第二个 Deluge 安装完成，但无法正常运行。\n不要问我为什么和怎么办，你自己看着办吧！${normal}"
 fi ; }
