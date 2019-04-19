@@ -558,7 +558,7 @@ if [[ $DEVERSION = "Mickey" ]]; then
 fi
 
 # 运行
-echo -ne "${bold}${yellow}请输入你要用于 Deluge WebUI 的端口 : ${normal}" ; read -e InputWebUIPort
+echo -ne "${bold}${yellow}请输入你要用于 Deluge WebUI 的端口 : [預設為 39999]${normal}" ; read -e InputWebUIPort
 case $InputWebUIPort in
     "" ) WebUIPort=39999 ;;
     *  ) WebUIPort=$InputWebUIPort ;;
