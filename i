@@ -483,7 +483,6 @@ for depid in ` ps aux | grep $(whoami) | grep -Ev "grep|aux|root" | grep de2 | a
 while [[ $DEVERSION = "" ]]; do
     echo -ne "${bold}${yellow}请输入你要安装的第二个 Deluge 的版本 : ${normal}" ; read -e DEVERSION
     if [[ $DEVERSION = "Mickey" ]]; then
-        echo TEST
         wget $quietflag -O $HOME/deluge-$DEVERSION.tar.xz https://github.com/BlackMickey/Seedbox-files/raw/master/deluge/deluge-1.3-stable-20190414.tar.xz
     else
         wget $quietflag -O $HOME/deluge-$DEVERSION.tar.gz http://download.deluge-torrent.org/source/deluge-$DEVERSION.tar.gz || { echo -e "${error} 下载 Deluge 源码失败，可能是这个版本不可用！" ; unset DEVERSION ; }
@@ -492,7 +491,7 @@ done
 
 # 安装
 if [[ $DEVERSION = "Mickey" ]]; then
-    tar Jxvf $HOME/deluge-$DEVERSION.tar.gz && cd $HOME/deluge-$DEVERSION
+    tar Jxvf $HOME/deluge-$DEVERSION.tar.xz && cd $HOME/deluge-$DEVERSION
 else
     tar zxf $HOME/deluge-$DEVERSION.tar.gz && cd $HOME/deluge-$DEVERSION
 fi
