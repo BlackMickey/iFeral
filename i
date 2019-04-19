@@ -578,7 +578,8 @@ DE2PORT=` grep daemon_port $HOME/.config/deluge2/core.conf | grep -oP "\d+" `
 DE2AUTHNAME=` grep -v localclient $HOME/.config/deluge2/auth | head -n1 | awk -F ":" '{print $1}' `
 DE2AUTHPASS=` grep -v localclient $HOME/.config/deluge2/auth | head -n1 | awk -F ":" '{print $2}' `
 
-if [[ ` ps aux | grep $(whoami) | grep -Ev "grep|aux|root" | grep de2 ` ]]; then
+#if [[ ` ps aux | grep $(whoami) | grep -Ev "grep|aux|root" | grep de2 ` ]]; then
+if [[ ` ps aux | grep $(whoami) | grep -Ev "grep|aux" | grep de2 ` ]]; then
     echo -e "\n${bold}${green}第二个 Deluge 已安装完成！${jiacu}\n"
     if [[ $DEVERSION = "Mickey" ]]; then
         echo -e "WebUI  网址  ${cyan}http://$(hostname -f):$WebUIPort${jiacu}"
