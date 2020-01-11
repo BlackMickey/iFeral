@@ -488,7 +488,7 @@ while [[ $DEVERSION = "" ]]; do
     if [[ $DEVERSION = "Mickey" ]]; then
         apt update
         apt install xz-utils python python-twisted python-openssl python-setuptools intltool python-xdg python-chardet geoip-database python-notify python-pygame python-glade2 librsvg2-common xdg-utils python-mako
-        wget $quietflag -O $HOME/deluge-1.3-stable-20190414.tar.xz https://github.com/BlackMickey/Seedbox-files/raw/master/deluge/deluge-1.3-stable-20190414.tar.xz
+        wget $quietflag -O $HOME/deluge-1.3-stable-sparse-20200106.tar.xz https://github.com/BlackMickey/Seedbox-files/raw/master/deluge/deluge-1.3-stable-sparse-20200106.tar.xz
     else
         wget $quietflag -O $HOME/deluge-$DEVERSION.tar.gz http://download.deluge-torrent.org/source/deluge-$DEVERSION.tar.gz || { echo -e "${error} 下载 Deluge 源码失败，可能是这个版本不可用！" ; unset DEVERSION ; }
     fi
@@ -496,7 +496,7 @@ done
 
 # 安装
 if [[ $DEVERSION = "Mickey" ]]; then
-    tar Jxvf $HOME/deluge-1.3-stable-20190414.tar.xz
+    tar Jxvf $HOME/deluge-1.3-stable-sparse-20200106.tar.xz
     cd $HOME/deluge-1.3-stable-20190414
 else
     tar zxf $HOME/deluge-$DEVERSION.tar.gz && cd $HOME/deluge-$DEVERSION
@@ -507,7 +507,7 @@ python setup.py install --user >/dev/null 2>&1
 if [[ $DEVERSION = "Mickey" ]]; then
     wget $quietflag -O $HOME/DelugePlugins.tar.xz https://github.com/BlackMickey/Seedbox-files/raw/master/deluge/DelugePlugins.tar.xz
     tar -C $HOME/.local/lib/python2.7/site-packages/deluge-1.3.15-py2.7.egg/deluge/plugins/ -Jxvf $HOME/DelugePlugins.tar.xz
-    cd && rm -rf $HOME/deluge-1.3-stable-20190414 $HOME/deluge-1.3-stable-20190414.tar.xz
+    cd && rm -rf $HOME/deluge-1.3-stable-sparse-20200106.tar.xz $HOME/deluge-1.3-stable-sparse-20200106.tar.xz
     cd && rm -rf $HOME/DelugePlugins.tar.xz
 else
     cd && rm -rf $HOME/deluge-"${DEVERSION}" $HOME/deluge-"${DEVERSION}".tar.gz
