@@ -497,7 +497,7 @@ done
 # 安装
 if [[ $DEVERSION = "Mickey" ]]; then
     tar Jxvf $HOME/deluge-1.3-stable-sparse-20200106.tar.xz
-    cd $HOME/deluge-1.3-stable-20190414
+    cd $HOME/deluge-1.3-stable-sparse-20200106
 else
     tar zxf $HOME/deluge-$DEVERSION.tar.gz && cd $HOME/deluge-$DEVERSION
 fi
